@@ -8,13 +8,13 @@ verify_ssl = true
 [packages]
 flask = "*"
 gunicorn = "*"
-pillow = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
 requests = "*"
 python-decouple = "*"
 tensorflow-gpu = "*"
 scikit-image = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
