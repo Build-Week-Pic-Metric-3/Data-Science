@@ -8,6 +8,11 @@ verify_ssl = true
 [packages]
 flask = "*"
 gunicorn = "*"
+pillow = "*"
+flask-sqlalchemy = "*"
+python-dotenv = "*"
+requests = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.7"
