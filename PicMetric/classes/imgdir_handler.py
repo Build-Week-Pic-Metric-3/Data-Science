@@ -1,7 +1,7 @@
-from PicMetric.functions.imgdir import get_pred_data
+from PicMetric.functions.img import get_pred_data
 import json
 
-class Imgdir_Handler:
+class Img_Handler:
     def __init__(self, url_list):
         self.url_list = url_list
     

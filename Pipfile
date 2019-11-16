@@ -13,6 +13,8 @@ flask-sqlalchemy = "*"
 python-dotenv = "*"
 requests = "*"
 python-decouple = "*"
+tensorflow-gpu = "*"
+scikit-image = "*"
 
 [requires]
 python_version = "3.7"
