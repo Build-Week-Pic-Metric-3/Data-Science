@@ -1,12 +1,7 @@
 import numpy as np
 
-from tensorflow.keras.applications.resnet50 import ResNet50
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
-
-from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout
-from tensorflow.keras.models import Model # This is the functional API
-from skimage import io, transform
 
 def process_img_path(img_path):
     "loads image at path and compresses to 224x224 pixels"
