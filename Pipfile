@@ -15,7 +15,9 @@ python-decouple = "*"
 tensorflow-gpu = "*"
 scikit-image = "*"
 pillow = "*"
-tensorflow = "==1.14"
+tensorflow = "*"
+numpy = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"
