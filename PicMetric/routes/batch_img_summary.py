@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from PicMetric.classes.img_handler import Img_Handler
 from PicMetric.functions.resnet50 import resnet_model
+import json
 
 bis_bp = Blueprint('bis_bp', __name__)
 
