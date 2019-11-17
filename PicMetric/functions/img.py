@@ -41,7 +41,7 @@ def get_pred_data(url, func):
                 DB.session.commit()
             
             os.remove(output_filename)
-            return json.dumps(data)
+            return data
         except Exception as e:
             data['pred'] = 'error'
             data['hash'] = 'error'
@@ -51,8 +51,8 @@ def get_pred_data(url, func):
             DB.session.add(db_entry)
             DB.session.commit()
 
-            return json.dumps(data)
+            return data
     else:
         data['pred'] = is_url_dup[0].pred
         data['hash'] = is_url_dup[0].hash
-        return json.dumps(data)
+        return data

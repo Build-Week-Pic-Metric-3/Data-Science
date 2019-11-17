@@ -9,7 +9,7 @@ class Img_Handler:
         data = dict()
         for url in self.url_list:
             data[url] = get_pred_data(url, func)
-        return json.dumps(data)
+        return data
         
 
 

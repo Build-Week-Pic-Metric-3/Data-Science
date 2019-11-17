@@ -12,4 +12,4 @@ def summary():
     url = 'https://i.redd.it/xo6qisuwsbs31.jpg'
     data = Img_Handler([url]).get_data(resnet_model)
 
-    return data
+    return json.dumps(data)

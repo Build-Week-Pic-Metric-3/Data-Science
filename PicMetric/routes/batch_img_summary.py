@@ -16,4 +16,4 @@ def batch_img_summary():
 
     data = Img_Handler(urls).get_data(resnet_model)
 
-    return data
+    return json.dumps(data)
