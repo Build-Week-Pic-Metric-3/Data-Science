@@ -8,6 +8,7 @@ from PIL import Image
 from PIL.ImageOps import fit
 
 from PicMetric.models import DB, HashTable
+from PicMetric.functions.resnet50 import resnet_process
 IMGDIR_PATH = 'PicMetric/assets/imgdir'
 
 def get_pred_data(url):
