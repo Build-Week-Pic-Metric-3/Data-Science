@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from PicMetric.classes.img_handler import Img_Handler
+from PicMetric.functions.resnet50 import resnet_model
 
 bis_bp = Blueprint('bis_bp', __name__)
 
@@ -13,6 +14,6 @@ def batch_img_summary():
         'https://i.redd.it/pk77o0u4vbs31.jpg'
     ]
 
-    data = Img_Handler(urls).get_data()
+    data = Img_Handler(urls).get_data(resnet_model)
 
     return data

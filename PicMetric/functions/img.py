@@ -8,10 +8,9 @@ from PIL import Image
 from PIL.ImageOps import fit
 
 from PicMetric.models import DB, HashTable
-from PicMetric.functions.resnet50 import resnet_process
 IMGDIR_PATH = 'PicMetric/assets/imgdir'
 
-def get_pred_data(url):
+def get_pred_data(url, func):
     data = dict()
     is_url_dup = HashTable.query.filter(HashTable.url == url).all()
     if not is_url_dup:
@@ -35,7 +34,7 @@ def get_pred_data(url):
                 data['hash'] = is_img_dup[0].hash
 
             else:
-                data['pred'] = str({tup[1]:tup[2] for tup in resnet_process(output_filename)})
+                data['pred'] = str(func(output_filename))
 
                 db_entry = HashTable(hash=filehash, pred=data['pred'], url=url)
                 DB.session.add(db_entry)
