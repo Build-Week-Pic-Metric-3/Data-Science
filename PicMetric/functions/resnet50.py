@@ -8,9 +8,6 @@ from tensorflow.keras.layers import Dense, GlobalAveragePooling2D, Dropout
 from tensorflow.keras.models import Model # This is the functional API
 from skimage import io, transform
 
-
-
-
 def process_img_path(img_path):
     "loads image at path and compresses to 224x224 pixels"
     return image.load_img(img_path, target_size=(224, 224))
@@ -25,8 +22,8 @@ def process_img_to_array(img_path):
     return x
 
 
-def resnet_process(img_array):
+def resnet_process(img_path):
     resnet = ResNet50(input_shape=(224, 224, 3),weights='imagenet')
-    predictions = resnet.predict(img_array)
+    predictions = resnet.predict(process_img_to_array(img_path))
     preds = decode_predictions(predictions, top=3)[0]
     return preds

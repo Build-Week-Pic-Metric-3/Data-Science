@@ -8,7 +8,7 @@ sum_bp = Blueprint('sum_bp', __name__)
 
 @sum_bp.route('/summary')
 def summary():
-    url = 'test_url'
+    url = 'https://i.redd.it/xo6qisuwsbs31.jpg'
     data = Img_Handler([url]).get_data()
 
     return data
