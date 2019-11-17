@@ -6,11 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+requests = "*"
 flask = "*"
 gunicorn = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
-requests = "*"
 python-decouple = "*"
 tensorflow-gpu = "*"
 scikit-image = "*"
