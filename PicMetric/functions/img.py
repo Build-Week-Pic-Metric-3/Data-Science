@@ -8,7 +8,7 @@ from PIL import Image
 from PIL.ImageOps import fit
 
 from PicMetric.models import DB, HashTable
-IMGDIR_PATH = 'PicMetric/assets/imgdir'
+IMGDIR_PATH = 'PicMetric/assets'
 
 def get_pred_data(url, model_func):
     data = dict()
@@ -45,7 +45,7 @@ def get_pred_data(url, model_func):
         except Exception as e:
             data['pred'] = 'error'
             data['hash'] = 'error'
-            data['e'] = str(e)
+            data['error'] = str(e)
 
             db_entry = HashTable(hash=data['hash'], pred=data['pred'], url=url)
             DB.session.add(db_entry)

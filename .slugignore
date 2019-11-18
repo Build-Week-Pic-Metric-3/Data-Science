@@ -1,0 +1,12 @@
+/Network Options
+
+*.ipynb
+
+__pycache__
+
+### VisualStudioCode ###
+.vscode/*
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
