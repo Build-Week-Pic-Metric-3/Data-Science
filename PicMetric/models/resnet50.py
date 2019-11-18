@@ -17,9 +17,9 @@ def process_img_to_array(img_path):
     return x
 
 
-def resnet_model(img_path):
-    resnet = ResNet50(input_shape=(224, 224, 3),weights='imagenet')
-    predictions = resnet.predict(process_img_to_array(img_path))
+def resnet(img_path):
+    resnet_model = ResNet50(input_shape=(224, 224, 3),weights='imagenet')
+    predictions = resnet_model.predict(process_img_to_array(img_path))
     raw = decode_predictions(predictions, top=3)[0]
     preds = {tup[1]:tup[2] for tup in raw}
     return preds
