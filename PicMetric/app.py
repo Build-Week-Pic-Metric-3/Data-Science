@@ -3,7 +3,7 @@ from flask import Flask, redirect, url_for
 
 from PicMetric.routes.summary import sum_bp
 from PicMetric.routes.batch_img_summary import bis_bp
-from PicMetricx.models import DB
+from PicMetric.models import DB
 
 from decouple import config
 from dotenv import load_dotenv
