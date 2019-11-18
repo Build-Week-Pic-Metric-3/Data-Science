@@ -54,8 +54,5 @@ termcolor==1.1.0
 urllib3==1.25.7
 Werkzeug==0.16.0
 wrapt==1.11.2
-<<<<<<< HEAD
 psycopg2-binary==2.8.1
-=======
 psycopg2==2.8.1
->>>>>>> 141c5297c1dc6b1d5f685082dfc3b0f8b7d7b866
