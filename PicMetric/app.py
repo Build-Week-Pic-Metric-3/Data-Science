@@ -1,12 +1,6 @@
 from flask import Flask, redirect, url_for
 
-
-
-from PicMetric.routes.summary import sum_bp
-from PicMetric.routes.batch_img_summary import bis_bp
-from PicMetric.models import DB
 from .routes.do_data_science import do_data_science_bp
-
 
 from decouple import config
 from dotenv import load_dotenv

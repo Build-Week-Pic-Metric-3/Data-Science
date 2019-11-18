@@ -26,8 +26,6 @@ class Img_Handler:
                 raw = io.BytesIO(response.content)
 
         except:
-            data['pred'] = ""
-            data['hash'] = ""
             data['error'] = 'url_error'
 
             return data
