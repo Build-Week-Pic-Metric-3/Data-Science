@@ -1,7 +1,5 @@
 /Network Options
 
-*.ipynb
-
 __pycache__
 
 ### VisualStudioCode ###
