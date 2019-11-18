@@ -10,7 +10,8 @@ do_data_science_bp = Blueprint('do_data_science_bp', __name__)
 @do_data_science_bp.route('/do_data_science', methods=['GET', 'POST'])
 def do_data_science():
     url_list = [
-        'https://i.redd.it/t5gqutndubs31.png'
+        'https://i.redd.it/t5gqutndubs31.png',
+        'https://i.redd.it/asnxp0mahfz31.jpg'
     ]
     model_list = [resnet]
 
