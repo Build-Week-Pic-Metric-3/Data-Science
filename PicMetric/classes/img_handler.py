@@ -64,5 +64,3 @@ class Img_Handler:
 
             os.remove(output_filename)
             data['error'] = ""
-
-        
