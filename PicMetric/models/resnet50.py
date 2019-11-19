@@ -1,7 +1,7 @@
 import numpy as np
 
-from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
-from tensorflow.keras.preprocessing import image
+from tensorflow_core.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
+from tensorflow_core.keras.preprocessing import image
 
 def process_img_path(img_path):
     "loads image at path and compresses to 224x224 pixels"

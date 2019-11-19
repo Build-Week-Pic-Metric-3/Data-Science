@@ -9,13 +9,14 @@ from PicMetric.schema import DB, HashTable
 IMGDIR_PATH = 'PicMetric/assets'
 
 class Img_Handler:
-    def __init__(self, url_list):
+    def __init__(self, url_list, model_list):
         self.url_list = url_list
+        self.model_list = model_list
     
-    def get_data(self, model_func):
-        data = dict()
+    def get_data(self):
+        data = []
         for url in self.url_list:
-            data[url] = get_pred_data(url, model_func)
+            data.append(self.get_pred_data(url))
         return data
 
     def get_pred_data(self, url):
@@ -64,3 +65,5 @@ class Img_Handler:
 
             os.remove(output_filename)
             data['error'] = ""
+
+            return data
