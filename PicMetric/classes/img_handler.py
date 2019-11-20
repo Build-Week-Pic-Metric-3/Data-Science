@@ -76,6 +76,9 @@ class Img_Handler:
 
             for filename in os.listdir(IMGDIR_PATH):
                 os.remove(os.path.join(IMGDIR_PATH, filename))
+            
+            with open(os.path.join(IMGDIR_PATH, 'placeholder.py'), 'wb'):
+                pass
 
             data['error'] = ""
 
