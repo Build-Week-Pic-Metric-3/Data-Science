@@ -14,6 +14,7 @@ def do_data_science():
     # url_list = ['https://i.redd.it/ukkmuzrmsbs31.jpg']
     # model_list = [resnet, yolov3]
 
+    # redirect(url_for('do_data_science_bp.do_data_science', url_list=url_list, model_list=model_list))
     url_list = request.args.get('url_list')
     model_list = request.args.get('model_list')
 
