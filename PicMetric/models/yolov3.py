@@ -1,5 +1,8 @@
 from imageai.Detection import ObjectDetection
 
+#make sure you download the weights!
+#wget https://github.com/pjreddie/darknet/blob/master/data/dog.jpg?raw=true https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/yolo.h5
+
 
 detector = ObjectDetection()
 model_path = "yolo.h5"
