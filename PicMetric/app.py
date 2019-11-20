@@ -9,12 +9,25 @@ import os
 from decouple import config
 from dotenv import load_dotenv
 
-
 S3_BUCKET = config('S3_BUCKET')
 S3_KEY = config('S3_KEY')
 S3_SECRET = config('S3_SECRET')
+bucket_name = S3_BUCKET
+
+S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+
+
+
 
 load_dotenv()
+
+import boto3, botocore
+
+s3 = boto3.client(
+   "s3",
+   aws_access_key_id= S3_KEY,
+   aws_secret_access_key= S3_SECRET
+)
 
 
 def allowed_file(filename):
@@ -23,6 +36,33 @@ def allowed_file(filename):
 
 UPLOAD_FOLDER = 'PicMetric/assets/temp/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+
+def upload_file_to_s3(file, bucket_name, acl="public-read"):
+
+    """
+    Docs: http://boto3.readthedocs.io/en/latest/guide/s3.html
+    """
+
+    try:
+
+        s3.upload_fileobj(
+            file,
+            bucket_name,
+            file.filename,
+            ExtraArgs={
+                "ACL": acl,
+                "ContentType": file.content_type
+            }
+        )
+
+    except Exception as e:
+        print("Something Happened: ", e)
+        return e
+
+    return "{}{}".format(S3_LOCATION, file.filename)
+
+
 
 
 def create_app():
@@ -57,6 +97,7 @@ def create_app():
         if request.method == 'POST':
             f = request.files['file']
             filename = secure_filename(f.filename)
-            f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+            temp_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename))
+            s3_path = upload_file_to_s3(f, S3_BUCKET)
             return 'file uploaded successfully'
     return app
