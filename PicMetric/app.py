@@ -5,6 +5,7 @@ from PicMetric.routes.do_data_science import do_data_science_bp
 from PicMetric.schema import DB
 from flask_cors import CORS
 
+import boto3, botocore
 import os
 from decouple import config
 from dotenv import load_dotenv
@@ -13,6 +14,9 @@ from dotenv import load_dotenv
 S3_BUCKET = config('S3_BUCKET')
 S3_KEY = config('S3_KEY')
 S3_SECRET = config('S3_SECRET')
+bucket_name = S3_BUCKET
+
+S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
 
 load_dotenv()
 
@@ -56,7 +60,6 @@ def create_app():
     def upload_file():
         if request.method == 'POST':
             f = request.files['file']
-            filename = secure_filename(f.filename)
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-            return 'file uploaded successfully'
+            return str(secure_filename(f.filename))
     return app
