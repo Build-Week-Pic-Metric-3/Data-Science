@@ -9,11 +9,11 @@ from decouple import config
 from dotenv import load_dotenv
 
 load_dotenv()
-
+logging.getLogger('flask_cors').level = logging.DEBUG
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, resources=r'*')
 
     app.config['SQLALCHEMY_DATABASE_URI'] = config('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
