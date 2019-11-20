@@ -2,11 +2,12 @@ import io
 import os
 import hashlib
 import requests
+import json
 
 from PIL import Image
 from PicMetric.schema import DB, HashTable
 
-IMGDIR_PATH = 'PicMetric/assets'
+IMGDIR_PATH = 'PicMetric/assets/temp'
 
 class Img_Handler:
     def __init__(self, url_list, model_list):
@@ -57,13 +58,25 @@ class Img_Handler:
                 img.save(out_file, format='png')
 
             for model in self.model_list:
-                data[model.__name__] = str(model(output_filename))
+                data[model.__name__] = model(output_filename)
+                imgs = dict()
+                if 'img' in data[model.__name__]:
+                    imgs[model.__name__] = data[model.__name__]['img']
+                    del data[model.__name__]['img']
+                data[model.__name__] = json.dumps(data[model.__name__])
 
             db_entry = HashTable(**data)
             DB.session.add(db_entry)
             DB.session.commit()
 
-            os.remove(output_filename)
+            if imgs:
+                for key, value in imgs.items():
+                    data[key] = json.loads(data[key])
+                    data[key]['img'] = value
+
+            for filename in os.listdir(IMGDIR_PATH):
+                os.remove(os.path.join(IMGDIR_PATH, filename))
+
             data['error'] = ""
 
             return data

@@ -7,3 +7,4 @@ class HashTable(DB.Model):
     source = DB.Column(DB.String(100), nullable=False)
     hash = DB.Column(DB.String(50), nullable=False)
     resnet = DB.Column(DB.String(100))
+    yolov3 = DB.Column(DB.String(100))
