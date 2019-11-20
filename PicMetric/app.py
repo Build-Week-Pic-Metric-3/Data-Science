@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for
 
 from PicMetric.routes.do_data_science import do_data_science_bp
 from PicMetric.schema import DB
+from flask_cors import CORS
 
 
 from decouple import config
@@ -12,6 +13,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = config('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
