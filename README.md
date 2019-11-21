@@ -29,7 +29,10 @@ ExtraArgs='{"ACL": "public-read", "ContentType": "image/png", "ContentDispositio
 ```
 
 To run the app, go into the Repo folder and run
-`gunicorn -t 120 "PicMetric:create_app()"`
+```
+source activate tensorflow_p36
+gunicorn -t 120 "PicMetric:create_app()"
+```
 
 
 ## Models
