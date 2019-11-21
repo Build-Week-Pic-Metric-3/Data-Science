@@ -4,15 +4,27 @@ from mtcnn.mtcnn import MTCNN
 from decouple import config
 from PicMetric.classes.img_handler import upload_file_to_s3
 
-def faces(input_path):
-    #declares MTCNN NN
+def faces(input_path: str) -> dict:
+    """ detects faces with mtcnn model
+    
+    Arguments:
+        input_path {str} -- [path to local image to put in model]
+
+    instantiate mtcnn
+    read in image with open cv
+    run model on image
+    try (there might be no faces in image)
+    draw mtcnn results onto the image
+    save image to temp folder
+    upload image to S3
+    
+    Returns:
+        [dict] -- [only contains s3 url to stored image]
+    """
     detector = MTCNN()
-    #loads in the image
     image = cv2.imread(input_path)
-    #output of the model
     result = detector.detect_faces(image)
     data = dict()
-    #creates boudning boxes for each key point MTCNN identifies
     try:
         bounding_box = result[0]['box']
         keypoints = result[0]['keypoints']
@@ -30,8 +42,6 @@ def faces(input_path):
         out_path = "PicMetric/assets/temp/face_test_modeled.jpg"
         cv2.imwrite(out_path, image)
         
-        #writes to the data object the URL for original image and the analyzed image.
-        #except if there is no data found, then 'no_faces' is placed
         with open(input_path, 'rb') as infile, open(out_path, 'rb') as outfile:
             filename= hashlib.md5(infile.read()).hexdigest() + '_faces.png'
             data['url'] = upload_file_to_s3(outfile, config('S3_BUCKET'), filename)
