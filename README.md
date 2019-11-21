@@ -1,8 +1,7 @@
-Pic Metric 3 - Data Science API
+# Pic Metric 3 - Data Science API
+Build on Deep Learning AMI (Amazon Linux) Version 25.3 - ami-028a41f747ffea9c0 using a g4dn.xlarge ec2 instance.
 
-
-Build on Deep Learning AMI (Amazon Linux) Version 25.3 - ami-028a41f747ffea9c0 using a g4dn.xlarge on ec2.
-
+## Setup
 
 Upon loading the server run the bootstrap.sh file, then create the .ev file.
 Reference .env file, place in the Repo folder:
