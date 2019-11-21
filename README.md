@@ -1,5 +1,13 @@
 # Pic Metric 3 - Data Science API
-Build on Deep Learning AMI (Amazon Linux) Version 25.3 - ami-028a41f747ffea9c0 using a g4dn.xlarge ec2 instance.
+## Authors
+* Rob Hamilton DS7 @Rob1Ham
+* Anthony Hart DS7
+* Jeremy Meek DS8
+* David Hang DS8
+
+* Instructor & Advisor - Jon Cody Sokol
+
+Built on Deep Learning AMI (Amazon Linux) Version 25.3 - ami-028a41f747ffea9c0 using a g4dn.xlarge ec2 instance.
 
 ## Setup
 
