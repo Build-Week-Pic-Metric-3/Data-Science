@@ -24,10 +24,9 @@ def yolov3(input_path):
     detection = detector.detectObjectsFromImage(input_image=input_path, output_image_path=temp_output_path)
 
     data = dict()
-    with open(temp_output_path, 'rb') as f:
-        filename= hashlib.md5(f.read()).hexdigest() + '_yolov3.png'
-        f.seek(0)
-        data['url'] = upload_file_to_s3(f, config('S3_BUCKET'), filename)
+    with open(temp_output_path, 'rb') as outfile, open(input_path, 'rb') as infile:
+        filename= hashlib.md5(infile.read()).hexdigest() + '_yolov3.png'
+        data['url'] = upload_file_to_s3(outfile, config('S3_BUCKET'), filename)
     
     for item in detection:
         data[item["name"]] = str(item["percentage_probability"])
