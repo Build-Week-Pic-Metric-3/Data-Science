@@ -30,7 +30,14 @@ def yolov3(input_path):
     data = dict()
     filename= os.path.splitext(os.path.basename(input_path))[0] + '_yolov3.png'
     data['url'] = "{}{}".format(S3_LOCATION, filename)
-    s3.upload_file(temp_output_path, S3_BUCKET, filename)
+    s3.upload_file(
+        temp_output_path,S3_BUCKET, filename,
+        ExtraArgs={
+        "ACL": "public-read",
+        "ContentType": 'imgage/jpeg',
+        "ContentDisposition": 'inline'
+        }
+    )
     
     for eachItem in detection:
         data[eachItem["name"]] = str(eachItem["percentage_probability"])
