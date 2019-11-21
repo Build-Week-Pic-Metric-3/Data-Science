@@ -3,7 +3,7 @@ Pic Metric 3 - Data Science API
 
 Build on Deep Learning AMI (Amazon Linux) Version 25.3 - ami-028a41f747ffea9c0 using a g4dn.xlarge on ec2.
 
-Reference .env file:
+Reference .env file, place in the Repo folder:
 
 ```
 FLASK_ENV='development'
