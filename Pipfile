@@ -19,6 +19,8 @@ pillow = "*"
 opencv-python = "*"
 keras = "*"
 pandas = "*"
+boto3 = "*"
+botocore = "*"
 
 [requires]
 python_version = "3.7"

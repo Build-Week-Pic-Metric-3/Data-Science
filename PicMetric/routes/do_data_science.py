@@ -11,9 +11,8 @@ do_data_science_bp = Blueprint('do_data_science_bp', __name__)
 
 @do_data_science_bp.route('/do_data_science', methods=['GET', 'POST'])
 def do_data_science():
-    url_list = [request.args.get('url')]
     model_list = [resnet, yolov3]
-
-    data = Img_Handler(url_list, model_list).get_data()
+    
+    data = Img_Handler(request.files['file'], model_list).get_pred_data()
 
     return jsonify(data)
