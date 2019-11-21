@@ -36,6 +36,7 @@ def create_app():
         return redirect(url_for('upload'))
     
     @app.route('/upload')
+    #returns simple HTML page for testing uploading content via post request
     def upload():
         return render_template('upload.html')
 

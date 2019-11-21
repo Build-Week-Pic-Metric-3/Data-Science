@@ -19,8 +19,11 @@ def do_data_science_url():
     model_list = [resnet, yolov3, faces]
 
     filename = 'PicMetric/assets/infile.png'
+
+    #parses url from the post request
     url = request.form.get('url')
     raw = requests.get(url).content
+    #writes it to a .png locally, then runs analysis against it across the models
     with open(filename, 'wb') as out_file:
         Image.open(io.BytesIO(raw)).save(out_file, format='png')
     with open(filename, 'rb') as in_file:

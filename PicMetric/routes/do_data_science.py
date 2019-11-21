@@ -17,5 +17,6 @@ do_data_science_bp = Blueprint('do_data_science_bp', __name__)
 @do_data_science_bp.route('/do_data_science', methods=['GET', 'POST'])
 def do_data_science():
     model_list = [resnet, yolov3, faces]
+    #pulls in the file from the post request
     infile = request.files['file']
     return jsonify(Img_Handler(infile, model_list).get_pred_data())
