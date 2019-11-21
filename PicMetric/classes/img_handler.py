@@ -53,7 +53,8 @@ class Img_Handler:
                 if model.__name__ != 'faces':
                     data[model.__name__] = getattr(is_img_dup[0], model.__name__)
             data['hash'] = is_img_dup[0].hash
-            data['source'] = is_img_dup[0].source
+            data['faces_source'] = is_img_dup[0].faces_source
+            data['yolov3_source'] = is_img_dup[0].yolov3_source
             data['original'] = is_img_dup[0].original
             data['error'] = ""
             return data
