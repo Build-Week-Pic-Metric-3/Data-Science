@@ -42,7 +42,8 @@ class Img_Handler:
         is_img_dup = HashTable.query.filter(HashTable.hash == data['hash']).all()
         if is_img_dup:
             for model in self.model_list:
-                data[model.__name__] = getattr(is_img_dup[0], model.__name__)
+                if model.__name__ != 'faces':
+                    data[model.__name__] = getattr(is_img_dup[0], model.__name__)
             data['hash'] = is_img_dup[0].hash
             data['source'] = is_img_dup[0].source
             data['original'] = is_img_dup[0].original
@@ -58,12 +59,12 @@ class Img_Handler:
             data[model.__name__] = model(output_filename)
 
             if 'url' in data[model.__name__]:
-                data['source'] = data[model.__name__]['url']
+                data[model.__name__+'_source'] = data[model.__name__]['url']
                 del data[model.__name__]['url']
-            data[model.__name__] = json.dumps(data[model.__name__])
+            if data[model.__name__]: data[model.__name__] = json.dumps(data[model.__name__])
+            else: del data[model.__name__]
 
-        db_entry = HashTable(**data)
-        DB.session.add(db_entry)
+        DB.session.add(HashTable(**data))
         DB.session.commit()
 
         for filename in os.listdir(IMGDIR_PATH):

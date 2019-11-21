@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for, flash, request, render_template
 
 
 from PicMetric.routes.do_data_science import do_data_science_bp
+from PicMetric.routes.do_data_science_url import do_data_science_url_bp
 from PicMetric.schema import DB
 from flask_cors import CORS
 
@@ -21,6 +22,7 @@ def create_app():
     DB.init_app(app)
     
     app.register_blueprint(do_data_science_bp)
+    app.register_blueprint(do_data_science_url_bp)
 
     @app.route('/')
     def redir():
@@ -31,7 +33,7 @@ def create_app():
     def reset():
         DB.drop_all()
         DB.create_all()
-        return 'DataBase Reset Successful'
+        return redirect(url_for('upload'))
     
     @app.route('/upload')
     def upload():
