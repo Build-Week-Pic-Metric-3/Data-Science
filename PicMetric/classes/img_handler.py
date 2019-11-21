@@ -4,25 +4,40 @@ import hashlib
 import requests
 import json
 from decouple import config
+from werkzeug.utils import secure_filename
+import boto3, botocore
 
 from PIL import Image
 from PicMetric.schema import DB, HashTable
-from PicMetric.functions.s3_funcs import upload_file_to_s3, S3_BUCKET
+from shutil import copystat
 
 
 IMGDIR_PATH = 'PicMetric/assets/temp'
 UPLOAD_FOLDER = 'PicMetric/assets/temp/'
+ExtraArgs = json.loads(config('ExtraArgs'))
+
+AWS = {
+    'aws_access_key_id': config('S3_KEY'),
+    'aws_secret_access_key': config('S3_SECRET')
+}
+s3 = boto3.client("s3", **AWS)
+
+def upload_file_to_s3(*args):
+    try: s3.upload_fileobj(*args, ExtraArgs=ExtraArgs)
+    except Exception as e: return str(e)
+    return "{}{}".format(config('S3_LOCATION'), args[2])
 
 class Img_Handler:
     def __init__(self, img_file, model_list):
         self.model_list = model_list
-        self.img_url = upload_file_to_s3(img_file, S3_BUCKET)
+        self.img_file = img_file
+        self.hash = hashlib.md5(img_file.read()).hexdigest()
+        self.img_file.seek(0)
+        self.img_url = upload_file_to_s3(self.img_file, config('S3_BUCKET'), self.hash+'.png')
         self.img_file = requests.get(self.img_url).content
 
-
     def get_pred_data(self):
-        data = {'original': self.img_url}
-        data['hash'] = hashlib.md5(self.img_file).hexdigest()
+        data = {'original': self.img_url, 'hash': self.hash}
 
         is_img_dup = HashTable.query.filter(HashTable.hash == data['hash']).all()
         if is_img_dup:
@@ -37,7 +52,7 @@ class Img_Handler:
         output_filename = os.path.join(IMGDIR_PATH, f"{data['hash']}.png")
 
         with open(output_filename, 'wb') as out_file:
-            Image.open(io.BytesIO(self.img_file)).save(out_file, format='png')
+            Image.open(io.BytesIO(requests.get(self.img_url).content)).save(out_file, format='png')
 
         for model in self.model_list:
             data[model.__name__] = model(output_filename)

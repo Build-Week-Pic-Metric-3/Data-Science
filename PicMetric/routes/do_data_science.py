@@ -15,4 +15,5 @@ def do_data_science():
     
     data = Img_Handler(request.files['file'], model_list).get_pred_data()
 
+    
     return jsonify(data)
