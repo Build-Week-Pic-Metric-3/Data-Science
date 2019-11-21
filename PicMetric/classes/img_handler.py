@@ -29,6 +29,8 @@ class Img_Handler:
             for model in self.model_list:
                 data[model.__name__] = getattr(is_img_dup[0], model.__name__)
             data['hash'] = is_img_dup[0].hash
+            data['source'] = is_img_dup[0].source
+            data['original'] = is_img_dup[0].original
             data['error'] = ""
             return data
         
