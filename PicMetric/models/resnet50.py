@@ -17,7 +17,15 @@ def process_img_to_array(img_path):
     return x
 
 
-def resnet(img_path):
+def resnet(img_path: str) -> dict:
+    """run simple resnet on image
+    
+    Arguments:
+        img_path {str} -- [path to local image]
+    
+    Returns:
+        [dict] -- [dictionary of the predictions]
+    """
     resnet_model = ResNet50(input_shape=(224, 224, 3),weights='imagenet')
     predictions = resnet_model.predict(process_img_to_array(img_path))
     raw = decode_predictions(predictions, top=3)[0]
