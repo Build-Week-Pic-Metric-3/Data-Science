@@ -18,8 +18,6 @@ path = os.getcwd()
 path = path + '/'
 logpath = 'nohup.out'
 logfile = path + logpath
-#import pdb; pdb.set_trace()
-logfile = open(logpath, 'r')
 
 def create_app():
     app = Flask(__name__)
@@ -50,13 +48,13 @@ def create_app():
     @app.route('/upload')
     #returns simple HTML page for testing uploading content via post request
     def upload():
-        return render_template('upload.html')
+        return render_template('base.html')
     
     @app.route('/log')
     def log():
-        logfile = open(logpath, 'r')
-        cleanlog = logfile.read()
-        cleanlog = cleanlog.replace("\ ", "\n")
-        return render_template('log.html',log=cleanlog)
+        with open(logpath, 'r') as logfile:
+            cleanlog = logfile.read()
+            cleanlog = cleanlog.replace("\ ", "\n")
+            return render_template('log.html',log=cleanlog)
 
     return app
