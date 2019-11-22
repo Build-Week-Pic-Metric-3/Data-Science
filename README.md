@@ -90,6 +90,7 @@ It will take ~30 seconds to churn through all the Neural Networks, when complete
 * `/upload` will take you to the upload form
 * `/do_data_science` is the route for processing images via POST request
 * `/do_data_science_url` is the route for processing URLs via POST request
+* `/log` is the route to load the nohup.out file for quick checking of Back End of Flask Logs
 
 ## To Do
 
