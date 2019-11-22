@@ -28,7 +28,7 @@ def upload_file_to_s3(*args):
     except Exception as e: return str(e)
     return "{}{}".format(config('S3_LOCATION'), args[2])
 
-def is_dup(file_hash:str) -> dict:
+def is_dup(file_hash:str, model_list:list) -> dict:
     """Checks if the image has been processed before
     
     Arguments:
@@ -40,7 +40,7 @@ def is_dup(file_hash:str) -> dict:
     data = {'hash': file_hash}
     is_img_dup = HashTable.query.filter(HashTable.hash == file_hash).all()
     if is_img_dup:
-        for model in self.model_list:
+        for model in model_list:
             if model.__name__ != 'faces':
                 data[model.__name__] = getattr(is_img_dup[0], model.__name__)
         data['hash'] = is_img_dup[0].hash
@@ -99,7 +99,7 @@ class Img_Handler:
         """
         data = {'original': self.img_url, 'hash': self.hash}
         
-        is_img_dup = is_dup(data['hash'])
+        is_img_dup = is_dup(data['hash'], self.model_list)
         if is_img_dup: return is_img_dup
 
         output_filename = os.path.join(IMGDIR_PATH, f"{data['hash']}.png")
