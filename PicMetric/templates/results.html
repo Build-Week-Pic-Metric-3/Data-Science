@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Pic Metric Results!</title>
+      <link rel="stylesheet" href="https://unpkg.com/picnic"/>
+   </head>
+   <style>
+      div
+      {
+      position:relative;
+      left:0;
+      right:0;
+      }
+   </style>
+   <body>
+      <div id="parent">
+         <article class="flex two" style="padding: 3em 4em 3em 4em;">
+            {% block content %}
+            <div class="child">
+               <H4>Photo ID:{{ hash }}</H4>
+               <h4> Original Photo</h4>
+               <img src={{original}}>
+            </div>
+            <div class="child">
+               <H1>Resnet 50 Predictions</H1>
+               <table style="width:25%">
+                  <tr>
+                     <th>Object</th>
+                  </tr>
+                  <tr>
+                     <td>{{resnet}}</td>
+                  </tr>
+               </table>
+            </div>
+            <div class="child">
+               <H1>Yolo V3 Predictions</H1>
+               <img src= {{yolov3_source}}>
+               <table style="width:25%">
+                  <tr>
+                     <th>Object</th>
+                  </tr>
+                  <tr>
+                     <td>{{yolov3}}</td>
+                  </tr>
+               </table>
+            </div>
+            <div class="child">
+               <H1>MTCNN Predictions</H1>
+               <img src= {{faces_source}}>
+            </div>
+            {% endblock %}
+         </article>
+   </body>
+   </div>
+</html>

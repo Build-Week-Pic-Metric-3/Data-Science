@@ -2,6 +2,8 @@ from flask import Flask, redirect, url_for, flash, request, render_template
 
 
 from PicMetric.routes.do_data_science import do_data_science_bp
+from PicMetric.routes.demo_file import demo_file_bp
+from PicMetric.routes.demo_url import demo_url_bp
 from PicMetric.routes.do_data_science_url import do_data_science_url_bp
 from PicMetric.schema import DB
 from flask_cors import CORS
@@ -21,6 +23,9 @@ def create_app():
 
     DB.init_app(app)
     
+    app.register_blueprint(demo_file_bp)
+    app.register_blueprint(demo_url_bp)
+
     app.register_blueprint(do_data_science_bp)
     app.register_blueprint(do_data_science_url_bp)
 
