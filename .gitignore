@@ -108,3 +108,4 @@ venv.bak/
 
 #yolo model
 yolo.h5
+.vscode/settings.json
