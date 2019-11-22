@@ -1,36 +1,31 @@
 {% extends "base.html" %}
     {% block content %}
+
+
+
+
     <div id="parent">
          <article class="flex two" style="padding: 3em 4em 3em 4em;">
             
             <div class="child">
-               <H4>Photo ID:{{ hash }}</H4>
-               <h4> Original Photo</h4>
+               <p>Photo ID:{{ hash }}</p>
+               <p> Original Photo</p>
                <img class="resize" src={{original}}>
             </div>
-            <div class="child">
                <H1>Resnet 50 Predictions</H1>
-               <table style="width:25%">
-                  <tr>
-                     <th>Object</th>
-                  </tr>
-                  <tr>
-                     <td>{{resnet}}</td>
-                  </tr>
-               </table>
-            </div>
-            <div class="child">
+
+               <div id="my_dataviz">
+
+               </div>
+
+                 {{ resnet }}
                <H1>Yolo V3 Predictions</H1>
                <img src= {{yolov3_source}}>
-               <table style="width:25%">
-                  <tr>
-                     <th>Object</th>
-                  </tr>
-                  <tr>
-                     <td>{{yolov3}}</td>
-                  </tr>
-               </table>
-            </div>
+
+
+                     {{yolov3}}
+
+
             <div class="child">
                <H1>MTCNN Predictions</H1>
                {% if faces_source != 'no_faces' %}
