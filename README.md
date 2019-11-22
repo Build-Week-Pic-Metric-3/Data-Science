@@ -94,5 +94,6 @@ It will take ~30 seconds to churn through all the Neural Networks, when complete
 ## To Do
 
 * Optimize time to return images, parrelizing jobs either within the flask app or by distributing across AWS Sagemaker.
+* standardize sizing and file formats using PIL for hosted iamges.
 
 
