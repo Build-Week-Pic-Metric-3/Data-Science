@@ -77,11 +77,11 @@ It will take ~30 seconds to churn through all the Neural Networks, when complete
 * yolov3_source = The bounding boxes identified by yolov3
 
 
-###  Yolo_v3 analyzed Image: 
+###  Yolo_v3 "You Only Look Once" - analyzed Image: 
 ![Yolo](http://picmetric3.s3.amazonaws.com/c19b284ae9180e15d537ffe66ddebf8d_yolov3.png)
 
 
-### MTCNN analyzed Image:
+### MTCNN - Facial Recognition - analyzed Image:
 ![MTCNN](http://picmetric3.s3.amazonaws.com/c19b284ae9180e15d537ffe66ddebf8d_faces.png)
 
 ## Routing
