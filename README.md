@@ -84,6 +84,13 @@ It will take ~30 seconds to churn through all the Neural Networks, when complete
 ### MTCNN analyzed Image:
 ![MTCNN](http://picmetric3.s3.amazonaws.com/c19b284ae9180e15d537ffe66ddebf8d_faces.png)
 
+## Routing
+* All running on Port 5000 (Flask App default)
+* `/reset` will reset and reinitiate the database
+* `/upload` will take you to the upload form
+* `/do_data_science` is the route for processing images via POST request
+* `/do_data_science_url` is the route for processing URLs via POST request
+
 ## To Do
 
 * Optimize time to return images, parrelizing jobs either within the flask app or by distributing across AWS Sagemaker.
