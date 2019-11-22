@@ -33,7 +33,7 @@
             </div>
             <div class="child">
                <H1>MTCNN Predictions</H1>
-               {% if condition == True %}
+               {% if faces_source != 'no_faces' %}
                   <img src= {{faces_source}}>
                {% else %}
                   <p>There are no faces in the image.</p>
