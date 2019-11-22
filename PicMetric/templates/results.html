@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <title>Pic Metric Results!</title>
-      <link rel="stylesheet" href="https://unpkg.com/picnic"/>
-   </head>
-   <style>
-      div
-      {
-      position:relative;
-      left:0;
-      right:0;
-      }
-   </style>
-   <body>
-      <div id="parent">
+{% extends "base.html" %}
+    {% block content %}
+    <div id="parent">
          <article class="flex two" style="padding: 3em 4em 3em 4em;">
-            {% block content %}
+            
             <div class="child">
                <H4>Photo ID:{{ hash }}</H4>
                <h4> Original Photo</h4>
-               <img src={{original}}>
+               <img class="resize" src={{original}}>
             </div>
             <div class="child">
                <H1>Resnet 50 Predictions</H1>
@@ -46,10 +33,13 @@
             </div>
             <div class="child">
                <H1>MTCNN Predictions</H1>
-               <img src= {{faces_source}}>
+               {% if condition == True %}
+                  <img src= {{faces_source}}>
+               {% else %}
+                  <p>There are no faces in the image.</p>
+               {% endif %}
+               
             </div>
-            {% endblock %}
          </article>
-   </body>
-   </div>
-</html>
+         </div>
+         {% endblock %}
